@@ -4,11 +4,11 @@
 BINARY="$1"
 
 # Regex to use with grep to find every non-allowed boost symbols
-REGEX="boost"
+REGEX=" u |iterators|addressof|integral_constant"
 
 # 'grep -v " u "' is used to exclude every unique global symbol from our search
 # The result should be null
-RES=$(nm -C -g --defined-only $BINARY | grep boost | grep -Ev $REGEX | wc -l)
+RES=$(nm -C -g --defined-only "$BINARY" | grep boost | grep -Ev "$REGEX" | wc -l)
 
 if [ -z "$RES" ]
 then
