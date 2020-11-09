@@ -8,4 +8,13 @@ REGEX="boost"
 
 # 'grep -v " u "' is used to exclude every unique global symbol from our search
 # The result should be null
-RES=$("nm -C -g --defined-only $BINARY | grep -v ' u ' | grep $REGEX")
+RES=$(nm -C -g --defined-only $BINARY | grep boost | grep -Ev $REGEX | wc -l)
+
+if [ -z "$RES" ]
+then
+    echo "No forbidden symbols found."
+else
+    echo "Successful hunting: "$RES" forbidden symbols found."
+fi
+
+exit 0
