@@ -14,7 +14,16 @@ do
     REGEX="${REGEX}|$line"
 done < symbols.txt
 
-RES=$(nm -C -g --defined-only "$BINARY" | grep boost | grep -Ev "$REGEX" | wc -l)
+# Summary output with every forbidden symbols we have found
+rm tmp
+touch tmp
+nm -C -g --defined-only "$BINARY" | grep boost | grep -Ev "$REGEX" |
+while read -r line
+do
+   echo "$line" | awk '{$1=$2=""; print $0}' | sed 's/^ *//g' >> tmp
+done
+
+RES=$(cat tmp | wc -l)
 
 if [ -z "$RES" ]
 then
