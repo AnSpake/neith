@@ -2,14 +2,25 @@
 
 help()
 {
-    echo -e "Usage: ./neith.sh <bin> <symbols_file> [-o|-s|-q|-h]\n"
+    echo -e "Usage: ./neith.sh [-b binary][-f symbol_file|-o outputfile|-s|-q|-h]\n"
+
+    echo -e "-b :\tBinary to inspect"
+    echo -e "\tMandatory\n"
+
+    echo -e "-f :\tSpecify file containing the forbidden symbols to find"
+    echo -e "\tMandatory\n"
+
     echo -e "-o :\tSpecify output file"
     echo -e "\tAll forbidden symbols found will be written in this file"
     echo -e "\tOverwrite existing file\n"
 
     echo -e "-s :\tPrint forbidden symbols found to stdout\n"
     echo -e "-q :\tFull quiet mode\n"
-    echo -e "-h :\tPrint usage"
+    echo -e "-h :\tPrint usage\n"
+
+    echo -e "Notes:"
+    echo "* Neith's default print behavior is to only show the total number of symbols found in the given binary"
+    echo "* You can use -s and -o at the same time"
 }
 
 search_sym()
