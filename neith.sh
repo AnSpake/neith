@@ -14,7 +14,7 @@ search_sym()
     while read -r line
     do
         REGEX="${REGEX}|$line"
-    done < symbols.txt
+    done < "$2"
 
 # Summary output with every forbidden symbols we have found
     rm tmp
@@ -35,9 +35,30 @@ search_sym()
     fi
 }
 
-case "$1"
-in
-    *) search_sym "$1"
-esac
+OUTPUT_FILE=""
+QUIET="no"
+BIN=${@:$OPTIND:1}
+SYMFILE=${@:$OPTIND+1:1}
 
+while getopts ":o:s:q" option
+do
+    case "${option}"
+    in
+        o)
+            OUTPUT_FILE=${OPTARG}
+            echo "Output file: $OUTPUT_FILE"
+            ;;
+
+        s)
+            echo "Print to stdout: yes"
+            ;;
+
+        q)
+            echo "Quiet mode: yes"
+            ;;
+
+    esac
+done
+
+search_sym "$BIN" "$SYMFILE"
 exit 0
