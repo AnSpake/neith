@@ -29,15 +29,19 @@ search_sym()
     done < "$2"
 
 # Summary output with every forbidden symbols we have found
-    rm tmp
-    touch tmp
-    nm -C -g --defined-only "$BINARY" | grep boost | grep -Ev "$REGEX" |
-    while read -r line
-    do
-       echo "$line" | awk '{$1=$2=""; print $0}' | sed 's/^ *//g' >> tmp
-    done
+    if [ ! -z "$OUTPUT_FILE" ]
+    then
+        rm "$OUTPUT_FILE"
+        nm -C -g --defined-only "$BINARY" | grep boost | grep -Ev "$REGEX" |
+        while read -r line
+        do
+           echo "$line" | awk '{$1=$2=""; print $0}' | sed 's/^ *//g' >> "$OUTPUT_FILE"
+        done
 
-    RES=$(cat tmp | wc -l)
+        RES=$(cat "$OUTPUT_FILE" | wc -l)
+    else
+        RES=$(nm -C -g --defined-only "$BINARY" | grep boost | grep -Ev "$REGEX" | wc -l)
+    fi
 
     if [ -z "$RES" ]
     then
