@@ -64,10 +64,8 @@ search_sym()
 
 OUTPUT_FILE=""
 QUIET="no"
-BIN=${@:$OPTIND:1}
-SYMFILE=${@:$OPTIND+1:1}
 
-while getopts ":o:s:q" option
+while getopts "b:f:o:sqh" option
 do
     case "${option}"
     in
@@ -91,5 +89,5 @@ do
     esac
 done
 
-search_sym "$BIN" "$SYMFILE"
+search_sym
 exit 0
