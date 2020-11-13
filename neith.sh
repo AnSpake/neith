@@ -1,5 +1,17 @@
 #!/bin/sh
 
+help()
+{
+    echo -e "Usage: ./neith.sh <bin> <symbols_file> [-o|-s|-q|-h]\n"
+    echo -e "-o :\tSpecify output file"
+    echo -e "\tAll forbidden symbols found will be written in this file"
+    echo -e "\tOverwrite existing file\n"
+
+    echo -e "-s :\tPrint forbidden symbols found to stdout\n"
+    echo -e "-q :\tFull quiet mode\n"
+    echo -e "-h :\tPrint usage"
+}
+
 search_sym()
 {
 # User must pass the path to their program in input
@@ -57,6 +69,10 @@ do
             echo "Quiet mode: yes"
             ;;
 
+        h)
+            help
+            exit 0
+            ;;
     esac
 done
 
