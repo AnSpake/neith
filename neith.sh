@@ -61,7 +61,7 @@ search_sym()
         echo -e "Forbidden symbols found: $RES" | tee -a "$OUTPUT_FILE"
         exit 0
     else
-        RES=$(nm -C -g --defined-only "$BINARY" | grep boost | grep -Ev "$REGEX" | wc -l)
+        RES=$(nm -C -g --defined-only "$BINARY" | grep boost | grep -cEv "$REGEX")
     fi
 
     echo -e "Forbidden symbols found: $RES"
