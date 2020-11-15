@@ -99,6 +99,12 @@ do
             help
             exit 0
             ;;
+
+        *)
+            echo "Invalid arguments"
+            help
+            exit 1
+            ;;
     esac
 done
 
