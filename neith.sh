@@ -49,7 +49,7 @@ search_sym()
            echo "$line" | awk '{$1=$2=""; print $0}' | sed 's/^ *//g' >> "$OUTPUT_FILE"
         done
 
-        RES=$(cat "$OUTPUT_FILE" | wc -l)
+        RES=$(wc -l < "$OUTPUT_FILE")
 
         if [ "$STDOUT" = "y" ]
         then
