@@ -40,7 +40,7 @@ search_sym()
     done < "$SYMFILE"
 
 # Summary output with every forbidden symbols we have found
-    if [ ! -z "$OUTPUT_FILE" ]
+    if [ -n "$OUTPUT_FILE" ]
     then
         rm "$OUTPUT_FILE"
         nm -C -g --defined-only "$BINARY" | grep boost | grep -Ev "$REGEX" |
@@ -110,7 +110,7 @@ then
     exit 1
 fi
 
-if [ ! -z "$STDOUT" ] && [ ! -z "$QUIET" ]
+if [ -n "$STDOUT" ] && [ -n "$QUIET" ]
 then
     echo -e "Invalid mix of arguments, you CANNOT use stdout and quiet options at the same time\n"
     help
