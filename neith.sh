@@ -3,7 +3,7 @@
 help()
 {
     echo -e "Help:\n====="
-    echo -e "Usage: ./neith.sh [-b binary][-f symbol_file|-o outputfile|-s|-q|-h]\n"
+    echo -e "Usage: ./neith.sh -b binary -f symbol_file [-o outputfile|-s|-q|-h]\n"
 
     echo -e "-b :\tBinary to inspect"
     echo -e "\tMandatory\n"
