@@ -32,6 +32,7 @@ search_sym()
 # 'grep -v " u "' is used to exclude every unique global symbol from our search
 # The result should be null
     REGEX=" u "
+    LIB="boost"
 
 # Read the symbols from given file and concatenate them to the REGEX variable
     while read -r line
@@ -43,7 +44,7 @@ search_sym()
     if [ -n "$OUTPUT_FILE" ]
     then
         rm "$OUTPUT_FILE"
-        nm -C -g --defined-only "$BINARY" | grep boost | grep -Ev "$REGEX" |
+        nm -C -g --defined-only "$BINARY" | grep "$LIB" | grep -Ev "$REGEX" |
         while read -r line
         do
            echo "$line" | awk '{$1=$2=""; print $0}' | sed 's/^ *//g' >> "$OUTPUT_FILE"
@@ -61,7 +62,7 @@ search_sym()
         echo -e "Forbidden symbols found: $RES" | tee -a "$OUTPUT_FILE"
         exit 0
     else
-        RES=$(nm -C -g --defined-only "$BINARY" | grep boost | grep -cEv "$REGEX")
+        RES=$(nm -C -g --defined-only "$BINARY" | grep "$LIB" | grep -cEv "$REGEX")
     fi
 
     echo -e "Forbidden symbols found: $RES"
