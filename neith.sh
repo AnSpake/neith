@@ -64,6 +64,7 @@ search_sym()
 
 OUTPUT_FILE=""
 QUIET="no"
+STDOUT="no"
 
 while getopts "b:f:o:sqh" option
 do
@@ -85,11 +86,13 @@ do
             ;;
 
         s)
-            echo "Print to stdout: yes"
+            STDOUT="yes"
+            echo "Print to stdout: $STDOUT"
             ;;
 
         q)
-            echo "Quiet mode: yes"
+            QUIET="yes"
+            echo "Quiet mode: $QUIET"
             ;;
 
         h)
@@ -98,6 +101,13 @@ do
             ;;
     esac
 done
+
+if [ -z "$BINARY" ] || [ -z "$SYMFILE" ]
+then
+    echo -e "Missing mandatory arguments.\n"
+    help
+    exit 1
+fi
 
 search_sym
 exit 0
