@@ -2,6 +2,7 @@
 
 help()
 {
+    echo -e "Help:\n====="
     echo -e "Usage: ./neith.sh [-b binary][-f symbol_file|-o outputfile|-s|-q|-h]\n"
 
     echo -e "-b :\tBinary to inspect"
@@ -18,7 +19,7 @@ help()
     echo -e "-q :\tFull quiet mode\n"
     echo -e "-h :\tPrint usage\n"
 
-    echo -e "Notes:"
+    echo -e "Notes:\n======"
     echo "* Neith's default print behavior is to only show the total number of symbols found in the given binary"
     echo "* You can use -s and -o at the same time"
     echo "* You can use -q and -o at the same time"
