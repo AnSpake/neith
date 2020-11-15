@@ -77,27 +77,22 @@ do
     in
         b)
             BINARY=${OPTARG}
-            echo "Binary: $BINARY"
             ;;
 
         f)
             SYMFILE=${OPTARG}
-            echo "Symbols file: $SYMFILE"
             ;;
 
         o)
             OUTPUT_FILE=${OPTARG}
-            echo "Output file: $OUTPUT_FILE"
             ;;
 
         s)
             STDOUT="y"
-            echo "Print to stdout: $STDOUT"
             ;;
 
         q)
             QUIET="y"
-            echo "Quiet mode: $QUIET"
             ;;
 
         h)
