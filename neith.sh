@@ -21,6 +21,8 @@ help()
     echo -e "Notes:"
     echo "* Neith's default print behavior is to only show the total number of symbols found in the given binary"
     echo "* You can use -s and -o at the same time"
+    echo "* You can use -q and -o at the same time"
+    echo "* You CANNOT use -s and -q at the same time"
 }
 
 search_sym()
