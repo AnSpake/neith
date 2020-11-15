@@ -49,21 +49,26 @@ search_sym()
         done
 
         RES=$(cat "$OUTPUT_FILE" | wc -l)
+
+        if [ "$STDOUT" = "y" ]
+        then
+            cat "$OUTPUT_FILE"
+            echo ""
+        fi
+
+        echo "" >> "$OUTPUT_FILE"
+        echo -e "Forbidden symbols found: $RES" | tee -a "$OUTPUT_FILE"
+        exit 0
     else
         RES=$(nm -C -g --defined-only "$BINARY" | grep boost | grep -Ev "$REGEX" | wc -l)
     fi
 
-    if [ -z "$RES" ]
-    then
-        echo "No forbidden symbols found."
-    else
-        echo "Successful hunting: "$RES" forbidden symbols found."
-    fi
+    echo -e "Forbidden symbols found: $RES"
 }
 
 OUTPUT_FILE=""
-QUIET="no"
-STDOUT="no"
+QUIET=""
+STDOUT=""
 
 while getopts "b:f:o:sqh" option
 do
@@ -85,12 +90,12 @@ do
             ;;
 
         s)
-            STDOUT="yes"
+            STDOUT="y"
             echo "Print to stdout: $STDOUT"
             ;;
 
         q)
-            QUIET="yes"
+            QUIET="y"
             echo "Quiet mode: $QUIET"
             ;;
 
@@ -108,5 +113,11 @@ then
     exit 1
 fi
 
-search_sym
+if [ "$QUIET" = "y" ]
+then
+    search_sym > /dev/null
+else
+    search_sym
+fi
+
 exit 0
