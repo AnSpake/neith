@@ -69,6 +69,16 @@ while getopts "b:f:o:sqh" option
 do
     case "${option}"
     in
+        b)
+            BINARY=${OPTARG}
+            echo "Binary: $BINARY"
+            ;;
+
+        f)
+            SYMFILE=${OPTARG}
+            echo "Symbols file: $SYMFILE"
+            ;;
+
         o)
             OUTPUT_FILE=${OPTARG}
             echo "Output file: $OUTPUT_FILE"
