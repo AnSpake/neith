@@ -102,12 +102,22 @@ do
     esac
 done
 
+# Argument sanity begin
 if [ -z "$BINARY" ] || [ -z "$SYMFILE" ]
 then
     echo -e "Missing mandatory arguments.\n"
     help
     exit 1
 fi
+
+if [ ! -z "$STDOUT" ] && [ ! -z "$QUIET" ]
+then
+    echo -e "Invalid mix of arguments, you CANNOT use stdout and quiet options at the same time\n"
+    help
+    exit 1
+fi
+
+# Argument sanity end
 
 if [ "$QUIET" = "y" ]
 then
