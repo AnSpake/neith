@@ -116,7 +116,6 @@ then
     help
     exit 1
 fi
-
 # Argument sanity end
 
 if [ "$QUIET" = "y" ]
