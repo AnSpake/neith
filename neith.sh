@@ -27,9 +27,6 @@ help()
 
 search_sym()
 {
-# User must pass the path to their program in input
-    BINARY="$1"
-
 # Regex to use with grep to find every non-allowed boost symbols
 # 'grep -v " u "' is used to exclude every unique global symbol from our search
 # The result should be null
@@ -39,7 +36,7 @@ search_sym()
     while read -r line
     do
         REGEX="${REGEX}|$line"
-    done < "$2"
+    done < "$SYMFILE"
 
 # Summary output with every forbidden symbols we have found
     if [ ! -z "$OUTPUT_FILE" ]
