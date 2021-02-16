@@ -8,7 +8,7 @@ help()
     echo -e "-b :\tBinary to inspect"
     echo -e "\tMandatory\n"
 
-    echo -e "-f :\tSpecify file containing the forbidden symbols to find"
+    echo -e "-f :\tSpecify file containing the allowed symbols to exclude from the search"
     echo -e "\tMandatory\n"
 
     echo -e "-o :\tSpecify output file"

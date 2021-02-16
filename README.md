@@ -19,7 +19,7 @@ Usage: ./neith.sh -b binary -f symbol_file [-o outputfile|-s|-q|-h]
 * Mandatory
 
 -f :
-* Specify file containing the forbidden symbols to find
+* Specify file containing the allowed symbols to exclude from the search
 * Mandatory
 
 -o :
@@ -45,6 +45,7 @@ Usage: ./neith.sh -b binary -f symbol_file [-o outputfile|-s|-q|-h]
 * You can use -q and -o at the same time
 * You CANNOT use -s and -q at the same time
 * Shellcheck compliant ! (exception: SC2039)
+* (bug) You can only use -s with -o
 
 ### Developer's notes
 Neith is a famous egyptian goddess, she was the goddess of hunting at some
